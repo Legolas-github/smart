@@ -92,7 +92,6 @@ public class LoginController {
 		else {
 			User user = (User) result.getData();
 			String token = createToken(response, new LoginUser(user.getId(), user.getAccount(), user));
-
 			// 为应用添加权限主题观察者，以便应用权限修改通知到对应应用更新权限
 			PermissionSubject permissionSubject = SpringUtils.getBean(PermissionSubject.class);
 			if (permissionSubject != null)
@@ -139,7 +138,7 @@ public class LoginController {
 		// Cookie添加token
 		Cookie cookie = new Cookie("token", token);
 		cookie.setPath("/");
-		cookie.setHttpOnly(true);
+		//cookie.setHttpOnly(true);
 		response.addCookie(cookie);
 		return token;
 	}
